@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    docker { image 'tomcat:latest' }
     stages {
         stage('Build') {
             steps {
@@ -15,12 +15,6 @@ pipeline {
                     junit 'target/surefire-reports/*.xml'
                 }
             }
-        }
-        stage('Docker Build') {
-
-              steps {
-                sh 'docker build -t tomcat:latest .'
-              }
         }
     }
 }
